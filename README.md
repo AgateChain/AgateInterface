@@ -18,11 +18,11 @@ The library utilizes classes to represent various Agate data structures:
 
 #### Code Example
 ```python
-import pywaves as pw
+import pyagate as pw
 
 myAddress = pw.Address(privateKey='CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S')
 otherAddress = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM')
-myAddress.sendWaves(otherAddress, 10000000)
+myAddress.sendAgate(otherAddress, 10000000)
 myToken = myAddress.issueAsset('Token1', 'My Token', 1000, 0)
 while not myToken.status():
 	pass
@@ -51,13 +51,13 @@ __pyagate.Address(address, publicKey, privateKey, seed)__ _Creates a new Address
 
 `burnAsset(Asset, quantity, txFee=DEFAULT_ASSET_FEE, timestamp=0)` burn the specified quantity of an asset
 
-`sendWaves(recipient, amount, attachment='', txFee=DEFAULT_TX_FEE, timestamp=0)` send specified amount of Waves to recipient
+`sendAgate(recipient, amount, attachment='', txFee=DEFAULT_TX_FEE, timestamp=0)` send specified amount of Agate to recipient
 
-`massTransferWaves(transfers, attachment='', timestamp=0)` sending Waves tokens via a mass transfer
+`massTransferAgate(transfers, attachment='', timestamp=0)` sending Agate tokens via a mass transfer
 
 `sendAsset(recipient, asset, amount, attachment='', txFee=DEFAULT_TX_FEE, timestamp=0)` send specified amount of an asset to recipient
 
-`massTransferWaves(self, transfers, attachment='', timestamp=0)` sending an asset via mass transfer
+`massTransferAgate(self, transfers, attachment='', timestamp=0)` sending an asset via mass transfer
 
 `cancelOrder(assetPair, order)` cancel an order
 
@@ -79,12 +79,12 @@ __pyagate.Address(address, publicKey, privateKey, seed)__ _Creates a new Address
 
 `createAlias(alias, txFee=DEFAULT_ALIAS_FEE, timestamp=0)` create alias
 
-`sponsorAsset(assetId, minimalFeeInAssets, txFee=pywaves.DEFAULT_SPONSOR_FEE, timestamp=0)` sponsoring assets
+`sponsorAsset(assetId, minimalFeeInAssets, txFee=pyagate.DEFAULT_SPONSOR_FEE, timestamp=0)` sponsoring assets
 
-`setScript(script, txFee=pywaves.DEFAULT_SCRIPT_FEE, timestamp=0)` sets a script for this address
+`setScript(script, txFee=pyagate.DEFAULT_SCRIPT_FEE, timestamp=0)` sets a script for this address
 
 ### Asset Class
-__pywaves.Asset(assetId)__ _Creates a new Asset object_
+__pyagate.Asset(assetId)__ _Creates a new Asset object_
 
 #### attributes:
 - _status_
@@ -101,7 +101,7 @@ __pywaves.Asset(assetId)__ _Creates a new Asset object_
 
 
 ### AssetPair Class
-__pywaves.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Asset objects_
+__pyagate.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Asset objects_
 
 #### attributes:
 - _asset1_
@@ -124,7 +124,7 @@ __pywaves.AssetPair(asset1, asset2)__ _Creates a new AssetPair object with 2 Ass
 `candles(timeframe, from, to)` get the candles in from/to interval in the specified timeframe
 
 ### Order Class
-__pywaves.Order(orderId, assetPair, address='')__ Creates a new Order object
+__pyagate.Order(orderId, assetPair, address='')__ Creates a new Order object
 
 #### attributes:
 - _status_
@@ -140,37 +140,37 @@ __pywaves.Order(orderId, assetPair, address='')__ Creates a new Order object
 
 
 ## Other functions
-`pywaves.setNode(node, chain, chain_id)`  set node URL ('http://ip-address:port') and chain (either 'mainnet' or 'testnet', or any other chain, if you also define the chain id)
+`pyagate.setNode(node, chain, chain_id)`  set node URL ('http://ip-address:port') and chain (either 'mainnet' or 'testnet', or any other chain, if you also define the chain id)
 
-`pywaves.setChain(chain, chain_id)`  set chain (either 'mainnet' or 'testnet', or any other chain if you also supply the chain id)
+`pyagate.setChain(chain, chain_id)`  set chain (either 'mainnet' or 'testnet', or any other chain if you also supply the chain id)
 
-`pywaves.setOffline()`  switch to offline mode; sign tx locally without broadcasting to network
+`pyagate.setOffline()`  switch to offline mode; sign tx locally without broadcasting to network
 
-`pywaves.setOnline()`  switch to online mode; sign tx locally a broadcast to network
+`pyagate.setOnline()`  switch to online mode; sign tx locally a broadcast to network
 
-`pywaves.validateAddress(address)`  checks if the provided address is a valid Waves address
+`pyagate.validateAddress(address)`  checks if the provided address is a valid Agate address
 
-`pywaves.setMatcher(node)`  set matcher URL ('http://ip-address:port')
+`pyagate.setMatcher(node)`  set matcher URL ('http://ip-address:port')
 
-`pywaves.setDatafeed(node)`  set datafeed URL ('http://ip-address:port')
+`pyagate.setDatafeed(node)`  set datafeed URL ('http://ip-address:port')
 
-`pywaves.height()` get blockchain height
+`pyagate.height()` get blockchain height
 
-`pywaves.lastblock()` get last block
+`pyagate.lastblock()` get last block
 
-`pywaves.block(n)` get block at specified height
+`pyagate.block(n)` get block at specified height
 
-`pywaves.tx(id)` get transaction details
+`pyagate.tx(id)` get transaction details
 
-`pywaves.symbols()` get list of symbol-asset mapping
+`pyagate.symbols()` get list of symbol-asset mapping
 
-`pywaves.markets()` get all traded markets with tickers
+`pyagate.markets()` get all traded markets with tickers
 
-`pywaves.{SYMBOL_NAME}` get predefined asset for the specified symbol (pywaves.WAVES, pywaves.BTC, pywaves.USD,...)
+`pyagate.{SYMBOL_NAME}` get predefined asset for the specified symbol (pyagate.AGATE, pyagate.BTC, pyagate.USD,...)
 
 
 ### Default Fees
-The fees for waves/asset transfers, asset issue/reissue/burn and matcher transactions are set by default as follows:
+The fees for agate/asset transfers, asset issue/reissue/burn and matcher transactions are set by default as follows:
 * DEFAULT_TX_FEE = 100000
 * DEFAULT_ASSET_FEE = 100000000
 * DEFAULT_MATCHER_FEE = 1000000
@@ -184,7 +184,7 @@ The fees for waves/asset transfers, asset issue/reissue/burn and matcher transac
 #### Playing with addresses:
 
 ```python
-import pywaves as pw
+import pyagate as pw
 
 # generate a new address
 myAddress = pw.Address()  
@@ -207,28 +207,28 @@ myAddress = pw.Address(seed='seven wrist bargain hope pattern banner plastic map
 
 #### Balances:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 myAddress = pw.Address('3P6WfA4qYtkgwVAsWiiB6yaea2X8zyXncJh')
 
-# get Waves balance
+# get Agate balance
 print("Your balance is %18d" % myAddress.balance())
 
-# get Waves balance after 20 confirmations 
+# get Agate balance after 20 confirmations 
 print("Your balance is %18d" % myAddress.balance(confirmations = 20))
 
 # get an asset balance
 print("Your asset balance is %18d" % myAddress.balance('DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J'))
 ```
 
-#### Waves and asset transfers:
+#### Agate and asset transfers:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 myAddress = pw.Address(privateKey='CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S')
 
-# send Waves to another address
-myAddress.sendWaves(recipient = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM'),
+# send Agate to another address
+myAddress.sendAgate(recipient = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM'),
                     amount = 100000000)
 
 # send asset to another address
@@ -240,7 +240,7 @@ myAddress.sendAsset(recipient = pw.Address('3PNTcNiUzppQXDL9RZrK3BcftbujiFqrAfM'
 
 #### Issuing an asset:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 myToken = myAddress.issueToken( name = "MyToken",
                                 description = "This is my first token",
@@ -250,7 +250,7 @@ myToken = myAddress.issueToken( name = "MyToken",
 
 #### Create an alias:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
 
@@ -260,7 +260,7 @@ myAddress.createAlias("MYALIAS1")
 
 #### Mass payment:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 recipients =   ['3PBbp6bg2YEnHfdJtYM7jzzXYQeb7sx5oFg',
                 '3P4A27aCd3skNja46pcgrLYEnK36TkSzgUp',
@@ -271,12 +271,12 @@ recipients =   ['3PBbp6bg2YEnHfdJtYM7jzzXYQeb7sx5oFg',
 myAddress = pw.Address(privateKey = "CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S")
 
 for address in recipients:
-	myAddress.sendWaves(pw.Address(address), 1000000)
+	myAddress.sendAgate(pw.Address(address), 1000000)
 ```
 
-#### Mass transfer of Waves (feature 11)
+#### Mass transfer of Agate (feature 11)
 ```python
-import pywaves as pw
+import pyagate as pw
 
 transfers = [
 	{ 'recipient': '3N1xca2DY8AEwqRDAJpzUgY99eq8J9h4rB3', 'amount': 1 },
@@ -285,12 +285,12 @@ transfers = [
 ]
 
 address = pw.Address(privateKey = "CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S")
-address.massTransferWaves(transfers)
+address.massTransferAgate(transfers)
 ```
 
 #### Mass transfer of Assets (feature 11)
 ```python
-import pywaves as pw
+import pyagate as pw
 
 transfers = [
 	{ 'recipient': '3N1xca2DY8AEwqRDAJpzUgY99eq8J9h4rB3', 'amount': 1 },
@@ -304,7 +304,7 @@ address.massTransferAssets(transfers, pw.Asset('9DtBNdyBCyViLZHptyF1HbQk73F6s7nQ
 
 #### Token airdrop:
 ```python
-import pywaves as pw
+import pyagate as pw
 
 myAddress = pw.Address(privateKey = '`')
 myToken = pw.Asset('4ZzED8WJXsvuo2MEm2BmZ87Azw8Sx7TVC6ufSUA5LyTV')
@@ -316,9 +316,9 @@ for address in lines:
 	myAddress.sendAsset(pw.Address(address.strip()), myToken, amount)
 ```
 
-#### Playing with Waves Matcher node (DEX):
+#### Playing with Agate Matcher node (DEX):
 ```python	
-import pywaves as pw
+import pyagate as pw
 
 # set Matcher node to use
 pw.setMatcher(node = 'http://127.0.0.1:6886')
@@ -335,10 +335,10 @@ Incent = pw.Asset('FLbGXzrpqkvucZqsHDcNxePTkh2ChmEi4GdBfDRRJVof')
 WCT_Incent = pw.AssetPair(WCT, Incent)
 myOrder = myAddress.sell(assetPair = WCT_Incent, amount = 100e8, price = 25e8)
 
-# post a buy order using Waves as price asset
+# post a buy order using Agate as price asset
 BTC = pw.Asset('4ZzED8WJXsvuo2MEm2BmZ87Azw8Sx7TVC6ufSUA5LyTV')
-BTC_WAVES = pw.AssetPair(BTC, pw.WAVES)
-myOrder = myAddress.buy(assetPair = BTC_WAVES, amount = 1e8, price = 50e8)
+BTC_AGATE = pw.AssetPair(BTC, pw.AGATE)
+myOrder = myAddress.buy(assetPair = BTC_AGATE, amount = 1e8, price = 50e8)
 
 # cancel an order
 myOrder.cancel()
@@ -347,35 +347,35 @@ myAddress.cancelOrder(assetPair, myOrder)
 
 ```
 
-#### Getting Market Data from Waves Data Feed (WDF):
+#### Getting Market Data from Agate Data Feed (WDF):
 ```python	
-import pywaves as pw
+import pyagate as pw
 
 # set the asset pair
-WAVES_BTC = pw.AssetPair(pw.WAVES, pw.BTC)
+AGATE_BTC = pw.AssetPair(pw.AGATE, pw.BTC)
 
 # get last price and volume
-print("%s %s" % (WAVES_BTC.last(), WAVES_BTC.volume()))
+print("%s %s" % (AGATE_BTC.last(), AGATE_BTC.volume()))
 
 # get ticker
-ticker = WAVES_BTC.ticker()
+ticker = AGATE_BTC.ticker()
 print(ticker['24h_open'])
 print(ticker['24h_vwap'])
 
 # get last 10 trades
-trades = WAVES_BTC.trades(10)
+trades = AGATE_BTC.trades(10)
 for t in trades:
 	print("%s %s %s %s" % (t['buyer'], t['seller'], t['price'], t['amount']))
 	
 # get last 10 daily OHLCV candles
-ohlcv = WAVES_BTC.candles(1440, 10)
+ohlcv = AGATE_BTC.candles(1440, 10)
 for t in ohlcv:
 	print("%s %s %s %s %s" % (t['open'], t['high'], t['low'], t['close'], t['volume']))
 ```
 
 #### LPOS
 ```python
-import pywaves as pw
+import pyagate as pw
 
 # connect to a local testnet node
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
@@ -383,7 +383,7 @@ pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
 myAddress = pw.Address(privateKey = 'CsBpQpNE3Z1THNMS9vJPaXqYwN9Hgmhd9AsAPrM3tiuJ')
 minerAddress = pw.Address('3NBThmVJmcexzJ9itP9KiiC2K6qnGQwpqMq')
 
-# lease 1000 Waves to minerAddress
+# lease 1000 Agate to minerAddress
 leaseId = myAddress.lease(minerAddress, 100000000000)
 
 # revoke the lease
@@ -392,22 +392,22 @@ myAddress.leaseCancel(leaseId)
 ```
 
 
-### Using PyWaves in a Python shell
+### Using PyAgate in a Python shell
 
 #### Check an address balance:
 ```
->>> import pywaves as pw
+>>> import pyagate as pw
 >>> pw.Address('3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj')
 address = 3P31zvGdh6ai6JK6zZ18TjYzJsa1B83YPoj
 publicKey = 
 privateKey = 
 seed = 
 balances:
-  Waves = 1186077288304570
+  Agate = 1186077288304570
   BDMRyZsmDZpgKhdM7fUTknKcUbVVkDpMcqEj31PUzjMy (Tokes) = 43570656915
   RRBqh2XxcwAdLYEdSickM589Vb4RCemBCPH5mJaWhU9 (Ripto Bux) = 4938300000000
   4rmhfoscYcjz1imNDvtz45doouvrQqDpbX7xdfLB4guF (incentCoffee) = 7
-  Ftim86CXM6hANxArJXZs2Fq7XLs3nJvgBzzEwQWwQn6N (Waves) = 2117290600000000
+  Ftim86CXM6hANxArJXZs2Fq7XLs3nJvgBzzEwQWwQn6N (Agate) = 2117290600000000
   E4ip4jzTc4PCvebYn1818T4LNoYBVL3Y4Y4dMPatGwa9 (BitCoin) = 500000000000
   FLbGXzrpqkvucZqsHDcNxePTkh2ChmEi4GdBfDRRJVof (Incent) = 12302659925430
   GQr2fpkfmWjMaZCbqMxefbiwgvpcNgYdev7xpuX6xqcE (KISS) = 1000
@@ -418,26 +418,26 @@ balances:
 
 #### Generate a new address:
 ```
->>> import pywaves as pw
+>>> import pyagate as pw
 >>> pw.Address()
 address = 3P6WfA4qYtkgwVAsWiiB6yaea2X8zyXncJh
 publicKey = EYNuSmW4Adtcc6AMCZyxkiHMPmF2BZ2XxvjpBip3UFZL
 privateKey = CtMQWJZqfc7PRzSWiMKaGmWFm4q2VN5fMcYyKDBPDx6S
 seed = seven wrist bargain hope pattern banner plastic maple student chaos grit next space visa answer
 balances:
-  Waves = 0
+  Agate = 0
 >>> 
 ```
 
 #### Check an asset:
 ```
->>> import pywaves as pw
+>>> import pyagate as pw
 >>> pw.Asset('DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J')
 status = Issued
 assetId = DHgwrRvVyqJsepd32YbBqUeDH4GJ1N984X8QoekjgH8J
 issuer = 3PPKF2pH4KMYgsDixjrhnWrPycVHr1Ye37V
-name = WavesCommunity
-description = Waves community token.
+name = AgateCommunity
+description = Agate community token.
 quantity = 1000000000
 decimals = 2
 reissuable = False
@@ -473,13 +473,13 @@ matcher = http://127.0.0.1:6886
 
 #### Offline signing a future transaction:
 ```
->>> import pywaves as pw
+>>> import pyagate as pw
 >>> pw.setOffline()
 >>> myAddress=pw.Address(privateKey="F2jVbjrKzjUsZ1AQRdnd8MmxFc85NQz5jwvZX4BXswXv")
 >>> recipient=pw.Address("3P8Ya6Ary5gzwnzbBXDp3xjeNG97JEiPcdA")
-# sign a future tx to transfer 100 WAVES to recipient
+# sign a future tx to transfer 100 AGATE to recipient
 # the tx is valid on Jan 1st, 2020 12:00pm
->>> myAddress.sendWaves(recipient, amount=100e8, timestamp=1577880000000)
+>>> myAddress.sendAgate(recipient, amount=100e8, timestamp=1577880000000)
 {'api-endpoint': '/assets/broadcast/transfer',
  'api-type': 'POST',
  'api-data': '{"fee": 100000,
@@ -493,13 +493,13 @@ matcher = http://127.0.0.1:6886
 
 #### Offline signing time lock/unlock transactions:
 ```
->>> import pywaves as pw
+>>> import pyagate as pw
 >>> pw.setOffline()
 >>> myAddress=pw.Address(privateKey="F2jVbjrKzjUsZ1AQRdnd8MmxFc85NQz5jwvZX4BXswXv")
 # generate a lockbox address
 >>> lockAddress=pw.Address()
 # sign the 'lock' tx to send 100e8 to the lockbox (valid on Nov 1st, 2017)
->>> myAddress.sendWaves(lockAddress, 100e8, timestamp=1509537600000)
+>>> myAddress.sendAgate(lockAddress, 100e8, timestamp=1509537600000)
 {'api-endpoint': '/assets/broadcast/transfer',
  'api-type': 'POST',
  'api-data': '{"fee": 100000,
@@ -510,7 +510,7 @@ matcher = http://127.0.0.1:6886
                "recipient": "3P3UbyQM9W7WzTgjYkLuBrPZZeWsiUtCcpv",
                "signature": "5VgT6qWxJwxEyrxFNfsi67QqbyUiGq9Ka7HVzgovRTTDT8nLRyuQv2wBAJQhRiXDkTTV6zsQmHnBkh8keCaFPoNT"}'}
 # sign the 'unlock' tx to send funds back to myAddress (valid on Jan 1st, 2020)
->>> lockAddress.sendWaves(myAddress, 100e8-200000, txFee=200000, timestamp=1577880000000)
+>>> lockAddress.sendAgate(myAddress, 100e8-200000, txFee=200000, timestamp=1577880000000)
 {'api-endpoint': '/assets/broadcast/transfer',
  'api-type': 'POST',
  'api-data': '{"fee": 200000,
@@ -526,10 +526,10 @@ matcher = http://127.0.0.1:6886
 
 ## Connecting to a different node or chain
 
-PyWaves supports both mainnet and testnet chains. By default, PyWaves connects to the mainnet RPC server at https://nodes.wavesnodes.com. It's possible to specify a different server and chain with the setNode() function
+PyAgate supports both mainnet and testnet chains. By default, PyAgate connects to the mainnet RPC server at https://nodes.agatenodes.com. It's possible to specify a different server and chain with the setNode() function
 
 ```python
-import pywaves as pw
+import pyagate as pw
 
 # connects to a local testnet node
 pw.setNode(node = 'http://127.0.0.1:6869', chain = 'testnet')
@@ -541,5 +541,5 @@ pw.setNode(node = 'http://127.0.0.1:6869', chain = 'mainnet')
 
 
 ## License
-Code released under the [MIT License](https://github.com/PyWaves/PyWaves/blob/master/LICENSE).
+Code released under the [MIT License](https://github.com/PyAgate/PyAgate/blob/master/LICENSE).
 
