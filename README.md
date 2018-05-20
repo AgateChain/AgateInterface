@@ -1,20 +1,20 @@
-# PyWaves
-PyWaves is an object-oriented Python interface to the Waves blockchain platform.
+# PyAgates
+PyAgates is an object-oriented Python interface to the Agate blockchain platform.
 
 ## Getting Started
 
-You can install PyWaves using:
+You can install PyAgate using:
 
-    pip install pywaves
+    pip install pyagates
 
 ## Documentation
 
-The library utilizes classes to represent various Waves data structures:
+The library utilizes classes to represent various Agate data structures:
 
-- pywaves.Address
-- pywaves.Asset
-- pywaves.AssetPair
-- pywaves.Order
+- pyagate.Address
+- pyagate.Asset
+- pyagate.AssetPair
+- pyagate.Order
 
 #### Code Example
 ```python
@@ -31,7 +31,7 @@ myAddress.sendAsset(otherAddress, myToken, 50)
 ```
 
 ### Address Class
-__pywaves.Address(address, publicKey, privateKey, seed)__ _Creates a new Address object_
+__pyagate.Address(address, publicKey, privateKey, seed)__ _Creates a new Address object_
 
 #### attributes:
 - _address_
@@ -41,7 +41,7 @@ __pywaves.Address(address, publicKey, privateKey, seed)__ _Creates a new Address
 
 #### methods:
 
-`balance(assetId='', confirmations=0)` returns balance of Waves or other assets
+`balance(assetId='', confirmations=0)` returns balance of Agate or other assets
 
 `assets()` returns a list of assets owned by the address
 
